@@ -1,6 +1,6 @@
 public class Flight {
     private String id;
-    private String planeType;//机场类型
+    private String planeType;//飞机类型                                                                                                                                     类型
     private String departureAirPort;//出发机场
     private String destinationAirPort;//到达机场
     private String departureTime;//出发时间

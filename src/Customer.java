@@ -1,8 +1,26 @@
 public class Customer {
     private String Id;
+    private String customerType;//旅客类型：成人、儿童、婴儿
     private String name;//姓名
     private String phone;//电话
     private String carId;//身份证号
+    private String birthDate;
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
 
     public String getId() {
         return Id;
