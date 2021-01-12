@@ -1,3 +1,9 @@
+package cn.edu.hcnu.bean;
+
+import cn.edu.hcnu.bean.Customer;
+
+import java.util.Set;
+
 public class Order {
     private float id;
     private float customerType;//乘机人类型
@@ -7,7 +13,7 @@ public class Order {
     private float jptgx;//机票退改险
     private float yhq;//优惠券
     private float hszj;//含税总价
-    private Customer customer[];
+    private Set<Customer> customerSet;//采用集合实现
 
     public float getId() {
         return id;
@@ -73,11 +79,11 @@ public class Order {
         this.hszj = hszj;
     }
 
-    public Customer[] getCustomer() {
-        return customer;
+    public Set<Customer> getCustomerSet() {
+        return customerSet;
     }
 
-    public void setCustomer(Customer[] customer) {
-        this.customer = customer;
+    public void setCustomerSet(Set<Customer> customerSet) {
+        this.customerSet = customerSet;
     }
 }

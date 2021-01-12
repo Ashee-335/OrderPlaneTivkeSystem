@@ -1,3 +1,5 @@
+package cn.edu.hcnu.bean;
+
 public class Customer {
     private String Id;
     private String customerType;//旅客类型：成人、儿童、婴儿
