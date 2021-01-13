@@ -14,6 +14,7 @@ public class Order {
     private float yhq;//优惠券
     private float hszj;//含税总价
     private Set<Customer> customerSet;//采用集合实现
+    private Flight flight;
 
     public float getId() {
         return id;
@@ -85,5 +86,13 @@ public class Order {
 
     public void setCustomerSet(Set<Customer> customerSet) {
         this.customerSet = customerSet;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 }

@@ -6,12 +6,13 @@ import cn.edu.hcnu.bll.impl.FlightServiceImpl;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainUI {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);//接受键盘输入
         while (true) {
             System.out.println("请输入相应的数字进行操作：");
@@ -43,8 +44,10 @@ public class MainUI {
 
                 Flight flight = new Flight(id, flightId, planeType, currentSeatsNum,
                         departureAirPort, destinationAirPort, departureTime);
-
                 IFlightService iFlightService = new FlightServiceImpl();
+                iFlightService.insertFlight(flight);
+
+                /*IFlightService iFlightService = new FlightServiceImpl();
                 try {
                     iFlightService.insertFlight(flight);
                 } catch (SQLException e) {
@@ -73,6 +76,19 @@ public class MainUI {
                             System.out.println("NO MATCH");
                         }
                     }
+                }*/
+            }else if (choice == 2) {
+                IFlightService iFlightService = new FlightServiceImpl();
+                try {
+                    Set<Flight> allFlights=iFlightService.getAllFlights();
+                    /*
+                    Set的遍历需要用到迭代器
+                     */
+                    for(Flight flight:allFlights){
+                        System.out.println(flight);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
         }

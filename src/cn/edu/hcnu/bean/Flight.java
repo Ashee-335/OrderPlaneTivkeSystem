@@ -4,16 +4,18 @@ public class Flight {
     private String id;//主键， UUID
     private String flightId;
     private String planeType;//飞机类型
-    private int currentseatNumb;//当前座位数
+    private int currentSeatsNum;//当前座位数
     private String departureAirPort;//出发机场
     private String destinationAirPort;//到达机场
     private String departureTime;//出发时间
 
-    public Flight(String id, String flightId, String planeType, int currentseatNumb, String departureAirPort, String destinationAirPort, String departureTime) {
+    public Flight(String id, String flightId, String planeType,
+                  int currentSeatsNum, String departureAirPort,
+                  String destinationAirPort, String departureTime) {
         this.id = id;
         this.flightId = flightId;
         this.planeType = planeType;
-        this.currentseatNumb = currentseatNumb;
+        this.currentSeatsNum = currentSeatsNum;
         this.departureAirPort = departureAirPort;
         this.destinationAirPort = destinationAirPort;
         this.departureTime = departureTime;
@@ -46,12 +48,12 @@ public class Flight {
         this.planeType = planeType;
     }
 
-    public int getCurrentseatNumb() {
-        return currentseatNumb;
+    public int getCurrentSeatsNum() {
+        return currentSeatsNum;
     }
 
-    public void setCurrentseatNumb(int currentseatNumb) {
-        this.currentseatNumb = currentseatNumb;
+    public void setCurrentSeatsNum(int currentSeatsNum) {
+        this.currentSeatsNum = currentSeatsNum;
     }
 
     public String getDepartureAirPort() {
@@ -82,12 +84,12 @@ public class Flight {
     @Override
     public String toString() {
         return "Flight{" +
-                "flightId='" + flightId + '\'' +
-                ", planeType='" + planeType + '\'' +
-                ", currentseatNumb='" + currentseatNumb + '\'' +
-                ", departureAirPort='" + departureAirPort + '\'' +
-                ", destinationAirPort='" + destinationAirPort + '\'' +
-                ", departureTime='" + departureTime + '\'' +
+                "航班ID='" + flightId + '\'' +
+                ", 机型='" + planeType + '\'' +
+                ", 座位数='" + currentSeatsNum + '\'' +
+                ", 起飞机场='" + departureAirPort + '\'' +
+                ", 目的机场='" + destinationAirPort + '\'' +
+                ", 起飞时间='" + departureTime + '\'' +
                 '}';
     }
 }
