@@ -5,6 +5,7 @@ import cn.edu.hcnu.bll.IFlightService;
 import cn.edu.hcnu.bll.impl.FlightServiceImpl;
 import cn.edu.hcnu.dao.IFlightDao;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -42,8 +43,19 @@ public class MainUI {
                 Flight flight=new Flight(id,flightId,planeType,currentseatNumb,departureAirPort,
                         destinationAirPort,departureTime);
 
+                //异常
                 IFlightService iFlightService=new FlightServiceImpl();
-                iFlightService.insertFlight(flight);
+                try{
+                    iFlightService.insertFlight(flight);
+                }catch (SQLException e){
+                    String errorMessage=e.getMessage();
+                    System.out.println(errorMessage);
+                    String errorId=errorMessage.substring(0,9);
+                    System.out.println("错误编号："+errorId);
+                    if ("ORA-12899".equals(errorId)){
+                        System.out.println("某列的值过大，请仔细检查");
+                    }
+                }
             }
         }
     }
