@@ -9,9 +9,23 @@ public class Flight {
     private String destinationAirPort;//到达机场
     private String departureTime;//出发时间
 
-    public Flight(String id, String flightId, String planeType,
+    //查询航班信息，分别依次从DAO层到BLL层再到UI层进行航班查询信息查询的设计，
+    // 因为在UI层中的航班查询设计中不需要id，
+    // 所以要在Flight中设置一个无id参数的构造方法，用于MainUI的choice == 3调用；
+    public Flight(String flightId, String planeType,
                   int currentSeatsNum, String departureAirPort,
                   String destinationAirPort, String departureTime) {
+        this.flightId = flightId;
+        this.planeType = planeType;
+        this.currentSeatsNum = currentSeatsNum;
+        this.departureAirPort = departureAirPort;
+        this.destinationAirPort = destinationAirPort;
+        this.departureTime = departureTime;
+    }//构造方法（先Alt+Insert 后点击Constructor 后Ctrl+A 最后点击OK），
+    // 用于UI层的MainUI中的Flight flight =new Flight(id,flightId,planeType,
+    // departureAirPort,destinationAirPort,departureTime),使其面向对象，后期不用改太多代码
+
+    public Flight(String id, String flightId, String planeType, int currentSeatsNum, String departureAirPort, String destinationAirPort, String departureTime) {
         this.id = id;
         this.flightId = flightId;
         this.planeType = planeType;
@@ -23,7 +37,7 @@ public class Flight {
     // 用于UI层的MainUI中的Flight flight =new Flight(id,flightId,planeType,
     // departureAirPort,destinationAirPort,departureTime),使其面向对象，后期不用改太多代码
 
-
+    //实现过程：Alt+Insert——>Getter and Setter——>Ctrl+A——>OK即可）
     public String getId() {
         return id;
     }
@@ -80,7 +94,7 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
-    //重写
+    //重写（操作过程：Alt+Insert——>toString——>OK即可））
     @Override
     public String toString() {
         return "Flight{" +

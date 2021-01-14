@@ -11,7 +11,7 @@ public class FlightDaoIm1 implements IFlightDao {
     @Override
     public void insertFlight(Flight flight) throws SQLException {
 
-        //插入数据库
+        //往数据库插入数据
         String url="jdbc:oracle:thin:@localhost:1521:orcl";//服务里的是OracleServiceORCL，所以最后写的是orcl而不是老师写的orclhc
         String username="opts";
         String password="opts1234";
@@ -51,7 +51,7 @@ public class FlightDaoIm1 implements IFlightDao {
             String destinationAirPort = rs.getString("DESTINATION_AIRPORT");
             String departureTime = rs.getString("DEPARTURE_TIME");
 
-            Flight flight = new Flight(id, flightId, planeType, currentSeatsNum,
+            Flight flight = new Flight(flightId, planeType, currentSeatsNum,
                     departureAirPort, destinationAirPort, departureTime);
             allFlights.add(flight);
         }
@@ -59,8 +59,31 @@ public class FlightDaoIm1 implements IFlightDao {
     }
 
     @Override
-    public Flight getFlightByDepartureTime(String departureTime) {
-        return null;
+    public Flight getFlightByDepartureTime(String departureTime) throws SQLException {
+        String sql = "SELECT FLIGHT_ID,PLANE_TYPE,\n" +
+                "TOTAL_SEATS_NUM,DEPARTURE_AIRPORT,\n" +
+                "DESTINATION_AIRPORT,DEPARTURE_TIME FROM flight \n" +
+                "WHERE DEPARTURE_TIME=?";
+        String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+        String username = "opts";
+        String password = "opts1234";
+        Connection conn = DriverManager.getConnection(url, username, password);
+        Flight flight = null;
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1,departureTime);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            String flightId = rs.getString("FLIGHT_ID");
+            String planeType = rs.getString("PLANE_TYPE");
+            int currentSeatsNum = rs.getInt("TOTAL_SEATS_NUM");
+            String departureAirPort = rs.getString("DEPARTURE_AIRPORT");
+            String destinationAirPort = rs.getString("DESTINATION_AIRPORT");
+            String departureTimes = rs.getString("DEPARTURE_TIME");
+
+            flight = new Flight(flightId, planeType, currentSeatsNum,
+                    departureAirPort, destinationAirPort, departureTimes);
+        }
+        return flight;
     }
 
     @Override
